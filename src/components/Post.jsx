@@ -13,6 +13,7 @@ const Post = (props)=> (
           )
       }
     </div>
+    <button onClick={() => props.addFavorites(props.id)}>Add Favorite</button>
   </article>
 );
 

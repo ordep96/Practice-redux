@@ -1,47 +1,32 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { data } from '../data/';
-import * as actions from '../actions/';
-import PostsList from './PostsList';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Link
+} from 'react-router-dom';
+
+import PostList from './PostsList';
+import Favorites from './Favorites';
 
 class App extends Component {
 
-  componentDidMount() {
-    this.props.actions.getAsynPostInstagram(`https://api.instagram.com/v1/users/self/media/recent/?access_token=${data.access_token}`);
-  }
-
-  getMorePost = (url) => {
-    this.props.actions.getAsynPostInstagram(url);
-  }
-
   render() {
     return(
-      this.props.posts !== undefined
-        ? (
-            <div>
-              <PostsList posts={this.props.posts} />
-              <button onClick={() => this.getMorePost(this.props.data.pagination.next_url)}>See more</button>
-            </div>
-        )
-        : <h2>No hay publicaciones disponibles</h2>
+      <Router>
+        <div>
+          <div>
+            <Link to="/">Home</Link>
+            <Link to="/favorites">Favoritos</Link>
+          </div>
+          <Switch>
+            <Route exact path="/" component={PostList}/>
+            <Route path="/favorites" component={Favorites}/>
+          </Switch>
+        </div>
+      </Router>
     );
   }
 }
 
-const mapStateToProps = (state,props) => {
-  console.log(state.posts);
-  return {
-    posts: state.posts,
-    data: state.data
-  }
-}
-
-const  mapDispatchToProps = dispatch => {
-  return{
-    actions: bindActionCreators(actions,dispatch)
-  }
-}
-
-
-export default connect(mapStateToProps,mapDispatchToProps)(App);
+export default App;

@@ -18,3 +18,12 @@ export const getAsynPostInstagram = (url) => {
   })
 }
 
+
+export const addFavoritePost = (idPost) => {
+  return {
+    type: 'ADD_FAVORITE_POST',
+    payload: {
+      id: idPost
+    }
+  }
+}
