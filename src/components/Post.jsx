@@ -1,9 +1,17 @@
 import React from 'react';
 
-const Post = props => (
+const Post = (props)=> (
   <article className="post">
     <div className="post__img">
-      <img src={props.images.low_resolution.url} alt=""/>
+      {
+        props.type === "video"
+          ? (
+            <video src={props.videos.standard_resolution.url} controls></video>
+          )
+          : (
+            <img src={props.images.standard_resolution.url}/>
+          )
+      }
     </div>
   </article>
 );

@@ -14,8 +14,24 @@ code {
 }
 
 .instagram-posts {
-  width: 1200px;
+  width: 90%;
   margin: auto;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+  grid-template-columns: repeat(auto-fill, 350px);
+}
+
+.post__img {
+  width: 320px;
+  height: 320px;
+}
+.post__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.post__img video {
+  width: 100%; 
+  height: 100%;
 }

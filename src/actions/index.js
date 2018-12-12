@@ -13,7 +13,7 @@ export const getAsynPostInstagram = (url) => {
     fetch(url)
       .then(data => data.json())
       .then(result => {
-        dispatch(getPostInstagram(result.data))
+        dispatch(getPostInstagram(result))
       })
   })
 }
